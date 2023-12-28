@@ -3,6 +3,13 @@ import {RemixServer} from '@remix-run/react';
 import isbot from 'isbot';
 import {renderToReadableStream} from 'react-dom/server';
 import {createContentSecurityPolicy} from '@shopify/hydrogen';
+import {server} from '../tests/mocks/server';
+
+server.listen();
+
+server.events.on('request:start', ({request}) => {
+  console.log('MSW intercepted:', request.method, request.url);
+});
 
 export default async function handleRequest(
   request: Request,
