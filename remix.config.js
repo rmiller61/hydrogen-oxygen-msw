@@ -16,4 +16,13 @@ module.exports = {
   serverModuleFormat: 'esm',
   serverPlatform: 'neutral',
   serverMinify: process.env.NODE_ENV === 'production',
+  serverNodeBuiltinsPolyfill: {
+    modules: {
+      http: true,
+      https: true,
+      stream: true,
+      url: true,
+      events: true,
+    },
+  },
 };
