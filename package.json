@@ -5,7 +5,9 @@
   "version": "1.0.1",
   "scripts": {
     "build": "shopify hydrogen build",
-    "dev": "shopify hydrogen dev --worker --codegen",
+    "build:mocks": "tsup",
+    "dev": "pnpm run build && pnpm run dev:app",
+    "dev:app": "cross-env NODE_OPTIONS=\"--import ./mocks/index.mjs\" shopify hydrogen dev --codegen --worker --debug",
     "preview": "npm run build && shopify hydrogen preview --worker",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
     "typecheck": "tsc --noEmit",
@@ -36,6 +38,7 @@
     "@types/eslint": "^8.4.10",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
+    "cross-env": "^7.0.3",
     "eslint": "^8.20.0",
     "eslint-plugin-hydrogen": "0.12.2",
     "msw": "^2.0.11",
@@ -44,6 +47,7 @@
     "postcss-preset-env": "^8.2.0",
     "prettier": "^2.8.4",
     "tailwindcss": "^3.3.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.2.2"
   },
   "engines": {
