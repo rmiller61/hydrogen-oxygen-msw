@@ -6,7 +6,7 @@
   "scripts": {
     "build": "shopify hydrogen build",
     "build:mocks": "tsup",
-    "dev": "pnpm run build && pnpm run dev:app",
+    "dev": "pnpm run build:mocks && pnpm run dev:app",
     "dev:app": "cross-env NODE_OPTIONS=\"--import ./mocks/index.mjs\" shopify hydrogen dev --codegen --worker --debug",
     "preview": "npm run build && shopify hydrogen preview --worker",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
