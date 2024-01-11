@@ -14,6 +14,14 @@ import {
   type SessionStorage,
   type Session,
 } from '@shopify/remix-oxygen';
+import {setupWorker} from 'msw/browser';
+import {handlers} from 'tests/mocks/handlers';
+
+const worker = setupWorker(...handlers);
+worker.start();
+worker.events.on('request:start', ({request}) => {
+  console.log('-----> MSW intercepted', request.method, request.url);
+});
 
 /**
  * Export a fetch handler in module format.
